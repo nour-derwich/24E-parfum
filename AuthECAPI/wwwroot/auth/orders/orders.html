@@ -1,0 +1,924 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders - Perfume Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+            .navbar h1 {
+                color: #764ba2;
+                font-size: 1.5rem;
+            }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .role-badge {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .logout-btn, .btn {
+            background: #764ba2;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+            .logout-btn:hover, .btn:hover {
+                background: #5a3a7a;
+                transform: translateY(-2px);
+            }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .page-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+            .page-header h2 {
+                color: #764ba2;
+                margin-bottom: 0.5rem;
+            }
+
+            .page-header p {
+                color: #666;
+            }
+
+        .filters-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+            .filter-group label {
+                font-weight: 500;
+                color: #333;
+            }
+
+            .filter-group select,
+            .filter-group input {
+                padding: 0.75rem;
+                border: 2px solid #e1e5e9;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                transition: border-color 0.3s ease;
+            }
+
+                .filter-group select:focus,
+                .filter-group input:focus {
+                    outline: none;
+                    border-color: #667eea;
+                }
+
+        .orders-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .order-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+            .order-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .order-info h3 {
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .order-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .order-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-processing {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-delivered {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .order-details {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .order-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 8px;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .item-details {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .item-price {
+            font-weight: 600;
+            color: #764ba2;
+        }
+
+        .order-total {
+            text-align: right;
+        }
+
+        .total-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+
+        .total-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #764ba2;
+        }
+
+        .order-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .btn-small {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            border-radius: 6px;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+            .btn-secondary:hover {
+                background: #545b62;
+            }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+            .btn-success:hover {
+                background: #1e7e34;
+            }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+            .btn-danger:hover {
+                background: #c82333;
+            }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-top: 5px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+        }
+
+            .empty-state h3 {
+                margin-bottom: 1rem;
+                opacity: 0.9;
+            }
+
+            .empty-state p {
+                opacity: 0.7;
+            }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+            .modal-header h3 {
+                color: #333;
+            }
+
+        .close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+            .close:hover {
+                color: #333;
+            }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+                color: #333;
+            }
+
+            .form-group select,
+            .form-group input {
+                width: 100%;
+                padding: 0.75rem;
+                border: 2px solid #e1e5e9;
+                border-radius: 8px;
+                font-size: 0.9rem;
+            }
+
+                .form-group select:focus,
+                .form-group input:focus {
+                    outline: none;
+                    border-color: #667eea;
+                }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+                .navbar h1 {
+                    font-size: 1.2rem;
+                }
+
+            .user-info {
+                gap: 0.5rem;
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            .order-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .order-details {
+                grid-template-columns: 1fr;
+            }
+
+            .order-actions {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🌸 Orders Management</h1>
+        <div class="user-info">
+            <span id="username">Loading...</span>
+            <span class="role-badge" id="userRole">-</span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h2 id="pageTitle">My Orders</h2>
+            <p id="pageDescription">View and manage your perfume orders</p>
+        </div>
+
+        <div class="filters-section">
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="statusFilter">Filter by Status</label>
+                    <select id="statusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="dateFrom">From Date</label>
+                    <input type="date" id="dateFrom">
+                </div>
+                <div class="filter-group">
+                    <label for="dateTo">To Date</label>
+                    <input type="date" id="dateTo">
+                </div>
+                <div class="filter-group">
+                    <button class="btn" onclick="applyFilters()">Apply Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingSpinner" class="loading">
+            <div class="spinner"></div>
+            <p>Loading orders...</p>
+        </div>
+
+        <div id="ordersContainer" class="orders-grid" style="display: none;">
+            <!-- Orders will be populated here -->
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <h3>No Orders Found</h3>
+            <p>You don't have any orders yet. Start shopping for some amazing perfumes!</p>
+        </div>
+    </div>
+
+    <!-- Status Update Modal -->
+    <div id="statusModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Update Order Status</h3>
+                <span class="close" onclick="closeStatusModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="newStatus">New Status</label>
+                    <select id="newStatus">
+                        <option value="Pending">Pending</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="form-group" id="priceGroup" style="display: none;">
+                    <label for="customPrice">Price (for custom orders)</label>
+                    <input type="number" id="customPrice" step="0.01" placeholder="Enter price">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeStatusModal()">Cancel</button>
+                <button class="btn btn-success" onclick="updateOrderStatus()">Update Status</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentUser = null;
+        let authToken = null;
+        let allOrders = [];
+        let filteredOrders = [];
+        let currentOrderId = null;
+
+        // Initialize page
+        window.onload = function() {
+            authToken = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+            if (!authToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+            initializePage();
+        };
+
+        async function initializePage() {
+            try {
+                const userRole = localStorage.getItem('userRole') || sessionStorage.getItem('userRole') || 'Client';
+                const username = localStorage.getItem('username') || sessionStorage.getItem('username') || 'User';
+
+                document.getElementById('username').textContent = username;
+                document.getElementById('userRole').textContent = userRole;
+
+                // Update page title based on role
+                updatePageTitle(userRole);
+
+                // Load orders
+                await loadOrders();
+
+            } catch (error) {
+                console.error('Failed to initialize page:', error);
+                showError('Failed to load page. Please try again.');
+            }
+        }
+
+        function updatePageTitle(role) {
+            const titleElement = document.getElementById('pageTitle');
+            const descriptionElement = document.getElementById('pageDescription');
+
+            switch(role.toLowerCase()) {
+                case 'client':
+                    titleElement.textContent = 'My Orders';
+                    descriptionElement.textContent = 'View and track your perfume orders';
+                    break;
+                case 'supplier':
+                    titleElement.textContent = 'Order Management';
+                    descriptionElement.textContent = 'Manage orders for your perfumes';
+                    break;
+                case 'admin':
+                    titleElement.textContent = 'All Orders';
+                    descriptionElement.textContent = 'System-wide order management';
+                    break;
+            }
+        }
+
+        async function loadOrders() {
+            try {
+                document.getElementById('loadingSpinner').style.display = 'block';
+                document.getElementById('ordersContainer').style.display = 'none';
+                document.getElementById('emptyState').style.display = 'none';
+
+                // In real implementation, replace with actual API call:
+                // const response = await fetch('/api/Orders', {
+                //     headers: { 'Authorization': `Bearer ${authToken}` }
+                // });
+                // const orders = await response.json();
+
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                const orders = await getMockOrders();
+
+                allOrders = orders;
+                filteredOrders = [...orders];
+                renderOrders();
+
+            } catch (error) {
+                console.error('Failed to load orders:', error);
+                showError('Failed to load orders. Please try again.');
+            }
+        }
+
+        async function getMockOrders() {
+            const userRole = (localStorage.getItem('userRole') || sessionStorage.getItem('userRole') || 'Client').toLowerCase();
+
+            const baseOrders = [
+                {
+                    id: 1,
+                    orderDate: '2024-05-30T10:30:00Z',
+                    status: 'Processing',
+                    totalPrice: 129.99,
+                    isCustomOrder: false,
+                    clientId: 'client1',
+                    clientName: 'John Doe',
+                    orderItems: [
+                        { perfumeId: 1, perfumeName: 'Chanel No. 5', quantity: 1, unitPrice: 89.99 },
+                        { perfumeId: 2, perfumeName: 'Dior Sauvage', quantity: 1, unitPrice: 40.00 }
+                    ]
+                },
+                {
+                    id: 2,
+                    orderDate: '2024-05-28T14:15:00Z',
+                    status: 'Delivered',
+                    totalPrice: 156.50,
+                    isCustomOrder: false,
+                    clientId: 'client2',
+                    clientName: 'Jane Smith',
+                    orderItems: [
+                        { perfumeId: 3, perfumeName: 'Tom Ford Black Orchid', quantity: 2, unitPrice: 78.25 }
+                    ]
+                },
+                {
+                    id: 3,
+                    orderDate: '2024-05-25T09:20:00Z',
+                    status: 'Pending',
+                    totalPrice: 0, // Custom order, price not set
+                    isCustomOrder: true,
+                    clientId: 'client3',
+                    clientName: 'Bob Johnson',
+                    orderItems: []
+                },
+                {
+                    id: 4,
+                    orderDate: '2024-05-22T16:45:00Z',
+                    status: 'Cancelled',
+                    totalPrice: 95.00,
+                    isCustomOrder: false,
+                    clientId: 'client1',
+                    clientName: 'John Doe',
+                    orderItems: [
+                        { perfumeId: 4, perfumeName: 'Creed Aventus', quantity: 1, unitPrice: 95.00 }
+                    ]
+                }
+            ];
+
+            // Filter based on role
+            if (userRole === 'client') {
+                return baseOrders.filter(order => order.clientId === 'client1');
+            }
+
+            return baseOrders;
+        }
+
+        function renderOrders() {
+            const container = document.getElementById('ordersContainer');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const emptyState = document.getElementById('emptyState');
+
+            loadingSpinner.style.display = 'none';
+
+            if (filteredOrders.length === 0) {
+                container.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            container.style.display = 'grid';
+
+            const userRole = (localStorage.getItem('userRole') || sessionStorage.getItem('userRole') || 'Client').toLowerCase();
+
+            container.innerHTML = filteredOrders.map(order => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <div class="order-info">
+                            <h3>Order #${order.id}</h3>
+                            <div class="order-date">${formatDate(order.orderDate)}</div>
+                            ${userRole !== 'client' ? `<div style="color: #666; font-size: 0.9rem; margin-top: 0.25rem;">Client: ${order.clientName}</div>` : ''}
+                            ${order.isCustomOrder ? '<div style="color: #764ba2; font-size: 0.8rem; font-weight: 600; margin-top: 0.25rem;">🎨 CUSTOM ORDER</div>' : ''}
+                        </div>
+                        <div class="order-status status-${order.status.toLowerCase()}">
+                            ${order.status}
+                        </div>
+                    </div>
+
+                    <div class="order-details">
+                        <div class="order-items">
+                            ${order.isCustomOrder ?
+                                '<div class="order-item"><div class="item-info"><div class="item-name">Custom Perfume</div><div class="item-details">Bespoke fragrance blend</div></div><div class="item-price">Price TBD</div></div>' :
+                                order.orderItems.map(item => `
+                                    <div class="order-item">
+                                        <div class="item-info">
+                                            <div class="item-name">${item.perfumeName}</div>
+                                            <div class="item-details">Qty: ${item.quantity} × $${item.unitPrice.toFixed(2)}</div>
+                                        </div>
+                                        <div class="item-price">$${(item.quantity * item.unitPrice).toFixed(2)}</div>
+                                    </div>
+                                `).join('')
+                            }
+                        </div>
+
+                        <div class="order-total">
+                            <div class="total-label">Total</div>
+                            <div class="total-amount">
+                                ${order.totalPrice > 0 ? `$${order.totalPrice.toFixed(2)}` : 'TBD'}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-actions">
+                        <button class="btn btn-small btn-secondary" onclick="viewOrderDetails(${order.id})">
+                            View Details
+                        </button>
+                        ${(userRole === 'supplier' || userRole === 'admin') ? `
+                            <button class="btn btn-small btn-success" onclick="openStatusModal(${order.id}, '${order.status}', ${order.isCustomOrder})">
+                                Update Status
+                            </button>
+                        ` : ''}
+                        ${userRole === 'client' && order.status === 'Pending' ? `
+                            <button class="btn btn-small btn-danger" onclick="cancelOrder(${order.id})">
+                                Cancel
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function applyFilters() {
+            const statusFilter = document.getElementById('statusFilter').value;
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+
+            filteredOrders = allOrders.filter(order => {
+                // Status filter
+                if (statusFilter && order.status !== statusFilter) {
+                    return false;
+                }
+
+                // Date filters
+                const orderDate = new Date(order.orderDate);
+                if (dateFrom && orderDate < new Date(dateFrom)) {
+                    return false;
+                }
+                if (dateTo && orderDate > new Date(dateTo + 'T23:59:59')) {
+                    return false;
+                }
+
+                return true;
+            });
+
+            renderOrders();
+        }
+
+        function openStatusModal(orderId, currentStatus, isCustomOrder) {
+            currentOrderId = orderId;
+            document.getElementById('newStatus').value = currentStatus;
+
+            // Show price input for custom orders
+            const priceGroup = document.getElementById('priceGroup');
+            if (isCustomOrder && currentStatus === 'Pending') {
+                priceGroup.style.display = 'block';
+            } else {
+                priceGroup.style.display = 'none';
+            }
+
+            document.getElementById('statusModal').style.display = 'block';
+        }
+
+        function closeStatusModal() {
+            document.getElementById('statusModal').style.display = 'none';
+            currentOrderId = null;
+        }
+
+        async function updateOrderStatus() {
+            if (!currentOrderId) return;
+
+            try {
+                const newStatus = document.getElementById('newStatus').value;
+                const customPrice = document.getElementById('customPrice').value;
+
+                const updateData = {
+                    status: newStatus
+                };
+
+                if (customPrice) {
+                    updateData.price = parseFloat(customPrice);
+                }
+
+                // In real implementation, replace with actual API call:
+                // const response = await fetch(`/api/Orders/${currentOrderId}/Status`, {
+                //     method: 'PUT',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         'Authorization': `Bearer ${authToken}`
+                //     },
+                //     body: JSON.stringify(updateData)
+                // });
+
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                // Update local data
+                const orderIndex = allOrders.findIndex(o => o.id === currentOrderId);
+                if (orderIndex !== -1) {
+                    allOrders[orderIndex].status = newStatus;
+                    if (updateData.price) {
+                        allOrders[orderIndex].totalPrice = updateData.price;
+                    }
+                }
+
+                closeStatusModal();
+                applyFilters(); // Re-render with filters applied
+                showSuccess('Order status updated successfully!');
+
+            } catch (error) {
+                console.error('Failed to update order status:', error);
+                showError('Failed to update order status. Please try again.');
+            }
+        }
+
+        async function cancelOrder(orderId) {
+            if (!confirm('Are you sure you want to cancel this order?')) {
+                return;
+            }
+
+            try {
+                // In real implementation, replace with actual API call:
+                // const response = await fetch(`/api/Orders/${orderId}/Status`, {
+                //     method: 'PUT',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         'Authorization': `Bearer ${authToken}`
+                //     },
+                //     body: JSON.stringify({ status: 'Cancelled' })
+                // });
+
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                // Update local data
+                const orderIndex = allOrders.findIndex(o => o.id === orderId);
+                if (orderIndex !== -1) {
+                    allOrders[orderIndex].status = 'Cancelled';
+                }
+
+                applyFilters(); // Re-render with filters applied
+                showSuccess('Order cancelled successfully!');
+
+            } catch (error) {
+                console.error('Failed to cancel order:', error);
+                showError('Failed to cancel order. Please try again.');
+            }
+        }
+
+        function viewOrderDetails(orderId) {
+            // In a real implementation, this would navigate to a detailed order view
+            alert(`Viewing details for Order #${orderId}`);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function showSuccess(message) {
+            // Simple success notification - in real app, use a proper notification system
+            alert('✅ ' + message);
+        }
+
+        function showError(message) {
+            // Simple error notification - in real app, use a proper notification system
+            alert('❌ ' + message);
+        }
+
+        function logout() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('username');
+            sessionStorage.removeItem('authToken');
+            sessionStorage.removeItem('userRole');
+            sessionStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('statusModal');
+            if (event.target === modal) {
+                closeStatusModal();
+            }
+        }
+    </script>
+</body>
+</html>

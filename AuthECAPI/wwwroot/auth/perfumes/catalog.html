@@ -1,0 +1,726 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfumes Catalog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+            .navbar h1 {
+                color: white;
+                font-size: 1.8rem;
+                font-weight: 300;
+            }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+            .nav-link:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+            }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+            .cart-icon:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .filters-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+            .search-box:focus {
+                outline: none;
+                border-color: #667eea;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+        .filter-select {
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+            .product-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .product-image::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%);
+            }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .product-stock {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            background: #f5f5f5;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .qty-btn:hover {
+                background: #e0e0e0;
+            }
+
+        .qty-input {
+            border: none;
+            padding: 0.5rem;
+            width: 50px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .add-to-cart-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+            .add-to-cart-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .add-to-cart-btn:disabled {
+                background: #ccc;
+                cursor: not-allowed;
+                transform: none;
+            }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .no-products {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+            .cart-sidebar.open {
+                right: 0;
+            }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #2ed573;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .checkout-btn:hover {
+                background: #26de68;
+                transform: translateY(-2px);
+            }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+            .overlay.active {
+                display: block;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🌸 Perfume Store</h1>
+        <div class="nav-links">
+            <a href="auth/dashboard.html" class="nav-link">Dashboard</a>
+            <a href="../orders/orders.html" class="nav-link">My Orders</a>
+            <a href="perfumes.html" class="nav-link">Catalog</a>
+        </div>
+        <div class="user-info">
+            <span id="username">Loading...</span>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+            <button class="nav-link" onclick="logout()" style="background: #ff4757; border: none;">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="filters-section">
+            <div class="filters">
+                <input type="text" class="search-box" id="searchBox" placeholder="Search perfumes...">
+                <select class="filter-select" id="priceFilter">
+                    <option value="">All Prices</option>
+                    <option value="0-50">$0 - $50</option>
+                    <option value="50-100">$50 - $100</option>
+                    <option value="100-200">$100 - $200</option>
+                    <option value="200+">$200+</option>
+                </select>
+                <select class="filter-select" id="stockFilter">
+                    <option value="">All Stock</option>
+                    <option value="in-stock">In Stock</option>
+                    <option value="low-stock">Low Stock (< 10)</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="loadingSpinner" class="loading">
+            <div class="spinner"></div>
+            <p>Loading perfumes...</p>
+        </div>
+
+        <div id="productsContainer" style="display: none;">
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+
+        <div id="noProducts" class="no-products" style="display: none;">
+            <h2>No perfumes found</h2>
+            <p>Try adjusting your search or filters</p>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Shopping Cart</h2>
+            <button class="close-cart" onclick="closeCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-total" id="cartTotal">
+            Total: $0.00
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+
+    <script>
+        let perfumes = [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let authToken = localStorage.getItem('authToken');
+
+        // Check authentication
+        window.onload = function() {
+            if (!authToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const username = localStorage.getItem('username') || 'User';
+            document.getElementById('username').textContent = username;
+
+            loadPerfumes();
+            updateCartUI();
+        };
+
+        // Load perfumes from API
+        async function loadPerfumes() {
+            try {
+                // Replace with actual API call
+                // const response = await fetch('/api/Perfumes', {
+                //     headers: { 'Authorization': `Bearer ${authToken}` }
+                // });
+                // perfumes = await response.json();
+
+                // Simulated data
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                perfumes = [
+                    { id: 1, name: "Midnight Rose", description: "Elegant rose fragrance with hints of vanilla", price: 89.99, availableQuantity: 25, supplierName: "Luxury Scents Co." },
+                    { id: 2, name: "Ocean Breeze", description: "Fresh aquatic scent perfect for summer", price: 65.00, availableQuantity: 8, supplierName: "Fresh Fragrances" },
+                    { id: 3, name: "Vanilla Dreams", description: "Warm vanilla with woody undertones", price: 95.50, availableQuantity: 30, supplierName: "Artisan Perfumes" },
+                    { id: 4, name: "Citrus Burst", description: "Energizing citrus blend with bergamot", price: 45.00, availableQuantity: 15, supplierName: "Natural Scents" },
+                    { id: 5, name: "Royal Oud", description: "Luxurious oud with spicy notes", price: 189.99, availableQuantity: 5, supplierName: "Premium Fragrances" },
+                    { id: 6, name: "Garden Party", description: "Floral bouquet with jasmine and lily", price: 72.50, availableQuantity: 20, supplierName: "Bloom Perfumery" }
+                ];
+
+                displayPerfumes(perfumes);
+
+            } catch (error) {
+                console.error('Error loading perfumes:', error);
+                document.getElementById('noProducts').style.display = 'block';
+                document.getElementById('noProducts').innerHTML = '<h2>Error loading perfumes</h2><p>Please try again later</p>';
+            } finally {
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('productsContainer').style.display = 'block';
+            }
+        }
+
+        // Display perfumes
+        function displayPerfumes(perfumesToShow) {
+            const grid = document.getElementById('productsGrid');
+
+            if (perfumesToShow.length === 0) {
+                document.getElementById('noProducts').style.display = 'block';
+                grid.innerHTML = '';
+                return;
+            }
+
+            document.getElementById('noProducts').style.display = 'none';
+
+            grid.innerHTML = perfumesToShow.map(perfume => `
+                <div class="product-card">
+                    <div class="product-image">
+                        🌸
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${perfume.name}</div>
+                        <div class="product-description">${perfume.description}</div>
+                        <div class="product-price">$${perfume.price}</div>
+                        <div class="product-stock">
+                            Stock: ${perfume.availableQuantity} units
+                            ${perfume.availableQuantity < 10 ? '<span style="color: #ff4757;">(Low Stock)</span>' : ''}
+                        </div>
+                        <div class="product-actions">
+                            <div class="quantity-selector">
+                                <button class="qty-btn" onclick="changeQuantity(${perfume.id}, -1)">-</button>
+                                <input type="number" class="qty-input" id="qty-${perfume.id}" value="1" min="1" max="${perfume.availableQuantity}">
+                                <button class="qty-btn" onclick="changeQuantity(${perfume.id}, 1)">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart(${perfume.id})" ${perfume.availableQuantity === 0 ? 'disabled' : ''}>
+                                ${perfume.availableQuantity === 0 ? 'Out of Stock' : 'Add to Cart'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter and search functions
+        document.getElementById('searchBox').addEventListener('input', filterPerfumes);
+        document.getElementById('priceFilter').addEventListener('change', filterPerfumes);
+        document.getElementById('stockFilter').addEventListener('change', filterPerfumes);
+
+        function filterPerfumes() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const priceRange = document.getElementById('priceFilter').value;
+            const stockFilter = document.getElementById('stockFilter').value;
+
+            let filtered = perfumes.filter(perfume => {
+                const matchesSearch = perfume.name.toLowerCase().includes(searchTerm) ||
+                                    perfume.description.toLowerCase().includes(searchTerm);
+
+                let matchesPrice = true;
+                if (priceRange) {
+                    const [min, max] = priceRange.split('-').map(p => p.replace('+', '') || Infinity);
+                    matchesPrice = perfume.price >= parseFloat(min) && perfume.price <= parseFloat(max || Infinity);
+                }
+
+                let matchesStock = true;
+                if (stockFilter === 'in-stock') {
+                    matchesStock = perfume.availableQuantity > 0;
+                } else if (stockFilter === 'low-stock') {
+                    matchesStock = perfume.availableQuantity < 10 && perfume.availableQuantity > 0;
+                }
+
+                return matchesSearch && matchesPrice && matchesStock;
+            });
+
+            displayPerfumes(filtered);
+        }
+
+        // Quantity management
+        function changeQuantity(perfumeId, change) {
+            const input = document.getElementById(`qty-${perfumeId}`);
+            const currentValue = parseInt(input.value);
+            const newValue = currentValue + change;
+            const perfume = perfumes.find(p => p.id === perfumeId);
+
+            if (newValue >= 1 && newValue <= perfume.availableQuantity) {
+                input.value = newValue;
+            }
+        }
+
+        // Cart management
+        function addToCart(perfumeId) {
+            const perfume = perfumes.find(p => p.id === perfumeId);
+            const quantity = parseInt(document.getElementById(`qty-${perfumeId}`).value);
+
+            const existingItem = cart.find(item => item.perfumeId === perfumeId);
+
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    perfumeId: perfumeId,
+                    name: perfume.name,
+                    price: perfume.price,
+                    quantity: quantity
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+
+            // Show success message
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'Added!';
+            btn.style.background = '#2ed573';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+            }, 1000);
+        }
+
+        function updateCartUI() {
+            const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = cartCount;
+
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #666;">Your cart is empty</p>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>$${item.price} x ${item.quantity}</small>
+                        </div>
+                        <div>
+                            <strong>$${(item.price * item.quantity).toFixed(2)}</strong><br>
+                            <button onclick="removeFromCart(${item.perfumeId})" style="background: #ff4757; color: white; border: none; padding: 0.2rem 0.5rem; border-radius: 3px; cursor: pointer;">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            document.getElementById('cartTotal').textContent = `Total: $${cartTotal.toFixed(2)}`;
+        }
+
+        function removeFromCart(perfumeId) {
+            cart = cart.filter(item => item.perfumeId !== perfumeId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar');
+            const overlay = document.getElementById('cartOverlay');
+
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('open');
+            document.getElementById('cartOverlay').classList.remove('active');
+        }
+
+        async function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            try {
+                const orderData = {
+                    orderItems: cart.map(item => ({
+                        perfumeId: item.perfumeId,
+                        quantity: item.quantity
+                    }))
+                };
+
+                // Replace with actual API call
+                // const response = await fetch('/api/Orders', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         'Authorization': `Bearer ${authToken}`
+                //     },
+                //     body: JSON.stringify(orderData)
+                // });
+
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                alert('Order placed successfully!');
+                cart = [];
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartUI();
+                closeCart();
+
+                // Redirect to orders page
+                window.location.href = '../orders/orders.html';
+
+            } catch (error) {
+                console.error('Error placing order:', error);
+                alert('Error placing order. Please try again.');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('username');
+            localStorage.removeItem('cart');
+            window.location.href = '../login.html';
+        }
+    </script>
+</body>
+</html>

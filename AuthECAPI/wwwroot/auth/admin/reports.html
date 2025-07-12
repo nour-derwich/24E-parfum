@@ -1,0 +1,657 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Perfume Dashboard - Reports</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+            .navbar h1 {
+                color: #667eea;
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .role-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .back-btn, .export-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+            .back-btn:hover, .export-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            }
+
+        .reports-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            color: white;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error-message {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .reports-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+            .reports-header h2 {
+                color: #667eea;
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+        .filters-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+            .filter-group label {
+                font-weight: 600;
+                color: #555;
+            }
+
+            .filter-group select,
+            .filter-group input {
+                padding: 0.8rem;
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+            }
+
+                .filter-group select:focus,
+                .filter-group input:focus {
+                    outline: none;
+                    border-color: #667eea;
+                    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+                }
+
+        .apply-filters-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+            .apply-filters-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .report-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+            .report-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            }
+
+            .report-card h3 {
+                color: #667eea;
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1rem;
+            background: #f8f9fa;
+            margin-bottom: 1rem;
+        }
+
+        .chart-bar {
+            background: linear-gradient(to top, #667eea, #764ba2);
+            width: 40px;
+            min-height: 20px;
+            border-radius: 4px 4px 0 0;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem;
+            transition: all 0.8s ease;
+            transform-origin: bottom;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.8rem;
+                text-align: left;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .data-table th {
+                background: #f8f9fa;
+                font-weight: 600;
+                color: #555;
+            }
+
+            .data-table tr:hover {
+                background: #f8f9fa;
+            }
+
+        .status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+            .status.delivered {
+                background: #d4edda;
+                color: #155724;
+            }
+
+            .status.processing {
+                background: #fff3cd;
+                color: #856404;
+            }
+
+            .status.pending {
+                background: #f8d7da;
+                color: #721c24;
+            }
+
+            .status.cancelled {
+                background: #f5f5f5;
+                color: #6c757d;
+            }
+
+        .export-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .reports-container {
+                padding: 0 1rem;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .export-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🌸 Perfume Dashboard - Reports</h1>
+        <div class="user-info">
+            <span id="username">Loading...</span>
+            <span class="role-badge" id="userRole">-</span>
+            <a href="javascript:history.back()" class="back-btn">← Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="reports-container">
+        <div id="loadingSpinner" class="loading">
+            <div class="spinner"></div>
+            <p>Loading reports...</p>
+        </div>
+
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+        <div id="reportsContent" style="display: none;">
+            <div class="reports-header">
+                <h2>📊 Business Reports & Analytics</h2>
+                <p>Comprehensive insights into your perfume business performance</p>
+            </div>
+
+            <div class="filters-section">
+                <h3>🔍 Report Filters</h3>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label for="dateRange">Date Range</label>
+                        <select id="dateRange">
+                            <option value="7">Last 7 days</option>
+                            <option value="30" selected>Last 30 days</option>
+                            <option value="90">Last 3 months</option>
+                            <option value="365">Last year</option>
+                            <option value="custom">Custom range</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="reportType">Report Type</label>
+                        <select id="reportType">
+                            <option value="all" selected>All Reports</option>
+                            <option value="sales">Sales Reports</option>
+                            <option value="inventory">Inventory Reports</option>
+                            <option value="customers">Customer Reports</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="customStartDate">Start Date</label>
+                        <input type="date" id="customStartDate" style="display: none;">
+                    </div>
+                    <div class="filter-group">
+                        <label for="customEndDate">End Date</label>
+                        <input type="date" id="customEndDate" style="display: none;">
+                    </div>
+                </div>
+                <button class="apply-filters-btn" onclick="applyFilters()">Apply Filters</button>
+            </div>
+
+            <div class="reports-grid" id="reportsGrid">
+                <!-- Reports will be populated by JavaScript -->
+            </div>
+
+            <div class="export-section">
+                <h3>📤 Export Reports</h3>
+                <p>Download your reports in various formats</p>
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPDF()">📄 Export to PDF</button>
+                    <button class="export-btn" onclick="exportToExcel()">📊 Export to Excel</button>
+                    <button class="export-btn" onclick="exportToCSV()">📈 Export to CSV</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+
+        <script>
+            // Global variables
+            let currentUser = null;
+            let reportsData = null;
+            let filteredData = null;
+
+            // Initialize page
+            window.onload = function () {
+                // Get user info from localStorage or use defaults
+                const userRole = localStorage.getItem('userRole') || 'Admin';
+                const username = localStorage.getItem('username') || 'Admin User';
+
+                document.getElementById('username').textContent = username;
+                document.getElementById('userRole').textContent = userRole;
+
+                // Check if user is admin (in a real app, you'd verify this with your backend)
+                if (userRole !== 'Admin') {
+                    showError('Access denied: Admin privileges required');
+                    return;
+                }
+
+                loadReports();
+                setupEventListeners();
+            };
+
+            function setupEventListeners() {
+                document.getElementById('dateRange').addEventListener('change', function () {
+                    const customInputs = document.querySelectorAll('#customStartDate, #customEndDate');
+                    if (this.value === 'custom') {
+                        customInputs.forEach(input => {
+                            input.style.display = 'block';
+                            input.parentElement.style.display = 'block';
+                        });
+
+                        // Set default dates
+                        const today = new Date();
+                        const lastMonth = new Date();
+                        lastMonth.setMonth(lastMonth.getMonth() - 1);
+
+                        document.getElementById('customStartDate').valueAsDate = lastMonth;
+                        document.getElementById('customEndDate').valueAsDate = today;
+                    } else {
+                        customInputs.forEach(input => {
+                            input.style.display = 'none';
+                            input.parentElement.style.display = 'none';
+                        });
+                    }
+                });
+            }
+
+            async function loadReports() {
+                try {
+                    // Simulate API call with loading spinner
+                    document.getElementById('loadingSpinner').style.display = 'flex';
+                    document.getElementById('errorMessage').style.display = 'none';
+
+                    // In a real app, you would fetch data from your API:
+                    // const response = await fetch('/api/reports');
+                    // reportsData = await response.json();
+
+                    // For demo, use mock data after a delay
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    reportsData = generateMockData();
+                    filteredData = reportsData;
+
+                    renderReports();
+
+                } catch (error) {
+                    showError('Failed to load reports: ' + error.message);
+                }
+            }
+
+            function generateMockData() {
+                // [Previous mock data generation remains the same]
+                // ... all your existing mock data code ...
+            }
+
+            function renderReports() {
+                const grid = document.getElementById('reportsGrid');
+
+                grid.innerHTML = `
+                        ${renderSalesOverview()}
+                        ${renderTopPerformers()}
+                        ${renderCustomerInsights()}
+                        ${renderInventoryStatus()}
+                        ${renderOrderAnalytics()}
+                        ${renderRecentActivity()}
+                    `;
+
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('reportsContent').style.display = 'block';
+
+                // Add animations
+                setTimeout(() => {
+                    animateCharts();
+                    animateStats();
+                }, 100);
+            }
+
+            // [All your existing render functions remain the same]
+            // renderSalesOverview(), renderTopPerformers(), etc.
+
+            function applyFilters() {
+                const dateRange = document.getElementById('dateRange').value;
+                const reportType = document.getElementById('reportType').value;
+
+                // In a real app, you would make an API call with these filters
+                console.log('Applying filters:', { dateRange, reportType });
+
+                // For demo purposes, we'll just filter the mock data
+                if (dateRange === 'custom') {
+                    const startDate = new Date(document.getElementById('customStartDate').value);
+                    const endDate = new Date(document.getElementById('customEndDate').value);
+
+                    if (startDate > endDate) {
+                        showError('Start date cannot be after end date');
+                        return;
+                    }
+
+                    console.log('Filtering by custom date range:', startDate, endDate);
+                }
+
+                // For demo, just reload the same data
+                filteredData = JSON.parse(JSON.stringify(reportsData)); // Deep copy
+
+                // Simulate some filtering effects
+                if (reportType === 'sales') {
+                    filteredData.customerInsights = null;
+                    filteredData.inventoryStatus = null;
+                } else if (reportType === 'inventory') {
+                    filteredData.salesOverview = null;
+                    filteredData.customerInsights = null;
+                } else if (reportType === 'customers') {
+                    filteredData.salesOverview = null;
+                    filteredData.inventoryStatus = null;
+                }
+
+                renderReports();
+            }
+
+            function animateStats() {
+                const statNumbers = document.querySelectorAll('.stat-number');
+                statNumbers.forEach(stat => {
+                    const finalValue = stat.textContent;
+                    stat.textContent = '0';
+
+                    if (finalValue.includes('$')) {
+                        const numValue = parseFloat(finalValue.replace(/[$,]/g, ''));
+                        animateNumber(stat, 0, numValue, 1500, value => '$' + value.toLocaleString());
+                    } else if (finalValue.includes('%')) {
+                        const numValue = parseFloat(finalValue.replace('%', ''));
+                        animateNumber(stat, 0, numValue, 1500, value => value.toFixed(1) + '%');
+                    } else {
+                        const numValue = parseInt(finalValue.replace(/,/g, ''));
+                        animateNumber(stat, 0, numValue, 1500, value => value.toLocaleString());
+                    }
+                });
+            }
+
+            function animateNumber(element, start, end, duration, format) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const value = Math.floor(progress * (end - start) + start);
+                    element.textContent = format(value);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            function animateCharts() {
+                const chartBars = document.querySelectorAll('.chart-bar');
+                chartBars.forEach(bar => {
+                    const originalHeight = bar.style.height;
+                    bar.style.height = '0';
+                    setTimeout(() => {
+                        bar.style.height = originalHeight;
+                    }, 100);
+                });
+            }
+
+            function exportToPDF() {
+                // In a real app, you would call your backend to generate a PDF
+                console.log('Generating PDF report...');
+                alert('PDF report generation would be implemented in a real application');
+            }
+
+            function exportToExcel() {
+                // In a real app, you would call your backend to generate Excel
+                console.log('Generating Excel report...');
+                alert('Excel report generation would be implemented in a real application');
+            }
+
+            function exportToCSV() {
+                // In a real app, you would call your backend to generate CSV
+                console.log('Generating CSV report...');
+                alert('CSV report generation would be implemented in a real application');
+            }
+
+            function showError(message) {
+                const errorElement = document.getElementById('errorMessage');
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                document.getElementById('loadingSpinner').style.display = 'none';
+            }
+        </script>
+ 
+</body>
+</html>

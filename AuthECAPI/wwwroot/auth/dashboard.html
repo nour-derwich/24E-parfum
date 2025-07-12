@@ -1,0 +1,778 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfume Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+            .navbar h1 {
+                color: #764ba2;
+                font-size: 1.5rem;
+            }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .role-badge {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .logout-btn:hover {
+                background: #ff5252;
+                transform: translateY(-2px);
+            }
+
+        .dashboard-container {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error-message {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 4px;
+            transition: width 1.5s ease;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .order-item, .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: #f8f9ff;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+            .order-item:hover, .product-item:hover {
+                background: #e8ecff;
+                transform: translateX(5px);
+            }
+
+        .status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+            .status.delivered {
+                background: #4CAF50;
+                color: white;
+            }
+
+            .status.processing {
+                background: #FF9800;
+                color: white;
+            }
+
+            .status.pending {
+                background: #2196F3;
+                color: white;
+            }
+
+            .status.cancelled {
+                background: #f44336;
+                color: white;
+            }
+
+        .action-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            margin: 0.2rem;
+        }
+
+            .action-btn:hover {
+                background: #5a67d8;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            }
+
+        .nav-btn {
+            background: #764ba2;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin: 0.3rem;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+            .nav-btn:hover {
+                background: #8b5fb5;
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+            }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .chart {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            height: 250px;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .chart-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            padding: 0.5rem;
+            border-radius: 5px 5px 0 0;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex: 1;
+            transform-origin: bottom;
+            transition: all 0.8s ease;
+        }
+
+        .navigation-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+            .navigation-section h3 {
+                margin-bottom: 1rem;
+                color: #333;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .user-info {
+                gap: 0.5rem;
+            }
+
+            .dashboard-container {
+                padding: 1rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🌸 Perfume Dashboard</h1>
+        <div class="user-info">
+            <span id="username">Loading...</span>
+            <span class="role-badge" id="userRole">-</span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div id="loadingSpinner" class="loading">
+            <div class="spinner"></div>
+            <p>Loading your dashboard...</p>
+        </div>
+
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+        <div id="dashboardContent" style="display: none;">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Authentication and user management
+        let currentUser = null;
+        let authToken = 'demo_token'; // Replace with actual localStorage.getItem('authToken');
+
+        // Check authentication on page load
+        window.onload = function () {
+            if (!authToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+            loadDashboard();
+        };
+
+        // Logout function
+        function logout() {
+            // localStorage.removeItem('authToken');
+            // localStorage.removeItem('userRole');
+            // localStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+
+        // Navigation functions
+        function navigateToOrders() {
+            window.location.href = 'orders/orders.html';
+        }
+
+        function navigateToCatalog() {
+            window.location.href = 'perfumes/catalog.html';
+        }
+
+        function navigateToCreatePerfume() {
+            window.location.href = 'perfumes/create-perfume.html';
+        }
+
+        function navigateToComponents() {
+            window.location.href = 'components/components.html';
+        }
+
+        function navigateToUsers() {
+            window.location.href = 'admin/users.html';
+        }
+
+        function navigateToReports() {
+            window.location.href = 'admin/reports.html';
+        }
+
+        // Load dashboard based on user role
+        async function loadDashboard() {
+            try {
+                const userRole = localStorage.getItem('userRole') || 'Client';
+                const username =  localStorage.getItem('username') || 'User';
+
+                document.getElementById('username').textContent = username;
+                document.getElementById('userRole').textContent = userRole;
+
+                let dashboardData;
+
+                // Simulate API call based on role
+                switch (userRole.toLowerCase()) {
+                    case 'client':
+                        dashboardData = await loadClientDashboard();
+                        break;
+                    case 'supplier':
+                        dashboardData = await loadSupplierDashboard();
+                        break;
+                    case 'admin':
+                        dashboardData = await loadAdminDashboard();
+                        break;
+                    default:
+                        dashboardData = await loadClientDashboard();
+                }
+
+                renderDashboard(dashboardData, userRole);
+
+            } catch (error) {
+                showError('Failed to load dashboard: ' + error.message);
+            }
+        }
+
+        // API calls (replace with actual API endpoints)
+        async function loadClientDashboard() {
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            return {
+                recentOrders: [
+                    { id: 1, orderDate: '2024-05-28', status: 'Delivered', totalPrice: 89.99, items: ['Chanel No. 5', 'Dior Sauvage'] },
+                    { id: 2, orderDate: '2024-05-25', status: 'Processing', totalPrice: 129.50, items: ['Tom Ford Black Orchid'] },
+                    { id: 3, orderDate: '2024-05-20', status: 'Pending', totalPrice: 67.00, items: ['Creed Aventus'] }
+                ],
+                ordersByStatus: [
+                    { status: 'Delivered', count: 15 },
+                    { status: 'Processing', count: 3 },
+                    { status: 'Pending', count: 2 }
+                ]
+            };
+        }
+
+        async function loadSupplierDashboard() {
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            return {
+                perfumes: [
+                    { id: 1, name: 'Midnight Rose', price: 79.99, stock: 50 },
+                    { id: 2, name: 'Ocean Breeze', price: 65.00, stock: 30 },
+                    { id: 3, name: 'Vanilla Dreams', price: 85.50, stock: 25 }
+                ],
+                components: [
+                    { id: 1, name: 'Rose Extract', quantity: 100, unit: 'ml' },
+                    { id: 2, name: 'Sandalwood Oil', quantity: 75, unit: 'ml' }
+                ],
+                pendingOrders: [
+                    { id: 1, client: 'John Doe', items: ['Midnight Rose x2'], date: '2024-05-30' },
+                    { id: 2, client: 'Jane Smith', items: ['Ocean Breeze x1'], date: '2024-05-29' }
+                ],
+                totalRevenue: 2500.75
+            };
+        }
+
+        async function loadAdminDashboard() {
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            return {
+                usersByRole: [
+                    { role: 'Client', count: 7 },
+                    { role: 'Supplier', count: 5 },
+                    { role: 'Admin', count: 3 }
+                ],
+                totalOrders: 450,
+                ordersByStatus: [
+                    { status: 'Delivered', count: 300 },
+                    { status: 'Processing', count: 80 },
+                    { status: 'Pending', count: 50 },
+                    { status: 'Cancelled', count: 20 }
+                ],
+                totalRevenue: 45750.50,
+                monthlyRevenue: [3200, 3800, 4200, 3900, 4500, 4800]
+            };
+        }
+
+        // Render dashboard based on role
+        function renderDashboard(data, role) {
+            const content = document.getElementById('dashboardContent');
+
+            // Add navigation section based on role
+            const navigationHtml = renderNavigationSection(role);
+
+            switch (role.toLowerCase()) {
+                case 'client':
+                    content.innerHTML = navigationHtml + renderClientDashboard(data);
+                    break;
+                case 'supplier':
+                    content.innerHTML = navigationHtml + renderSupplierDashboard(data);
+                    break;
+                case 'admin':
+                    content.innerHTML = navigationHtml + renderAdminDashboard(data);
+                    break;
+            }
+
+            document.getElementById('loadingSpinner').style.display = 'none';
+            document.getElementById('dashboardContent').style.display = 'block';
+
+            // Add animations
+            setTimeout(() => {
+                animateCharts();
+                animateStats();
+            }, 100);
+        }
+
+        function renderNavigationSection(role) {
+            let navigationButtons = '';
+
+            switch (role.toLowerCase()) {
+                case 'client':
+                    navigationButtons = `
+                            <button class="nav-btn" onclick="navigateToOrders()">📦 My Orders</button>
+                            <button class="nav-btn" onclick="navigateToCatalog()">🌸 Browse Perfumes</button>
+                        `;
+                    break;
+                case 'supplier':
+                    navigationButtons = `
+                            <button class="nav-btn" onclick="navigateToOrders()">📦 Manage Orders</button>
+                            <button class="nav-btn" onclick="navigateToCatalog()">🌸 My Perfumes</button>
+                            <button class="nav-btn" onclick="navigateToCreatePerfume()">➕ Add Perfume</button>
+                            <button class="nav-btn" onclick="navigateToComponents()">⚗️ Components</button>
+                        `;
+                    break;
+                case 'admin':
+                    navigationButtons = `
+                            <button class="nav-btn" onclick="navigateToOrders()">📦 All Orders</button>
+                            <button class="nav-btn" onclick="navigateToCatalog()">🌸 All Perfumes</button>
+                            <button class="nav-btn" onclick="navigateToCreatePerfume()">➕ Add Perfume</button>
+                            <button class="nav-btn" onclick="navigateToComponents()">⚗️ Components</button>
+                            <button class="nav-btn" onclick="navigateToUsers()">👥 Manage Users</button>
+                            <button class="nav-btn" onclick="navigateToReports()">📊 Reports</button>
+                        `;
+                    break;
+            }
+
+            return `
+                    <div class="navigation-section">
+                        <h3>🧭 Quick Navigation</h3>
+                        <div class="nav-grid">
+                            ${navigationButtons}
+                        </div>
+                    </div>
+                `;
+        }
+
+        function renderClientDashboard(data) {
+            const totalOrders = data.ordersByStatus.reduce((sum, item) => sum + item.count, 0);
+            const deliveredOrders = data.ordersByStatus.find(item => item.status === 'Delivered')?.count || 0;
+            const successRate = Math.round((deliveredOrders / totalOrders) * 100);
+
+            return `
+                    <div class="dashboard-grid">
+                        <div class="card stat-card">
+                            <div class="stat-number">${totalOrders}</div>
+                            <div class="stat-label">Total Orders</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${successRate}%"></div>
+                            </div>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">${successRate}% Success Rate</div>
+                        </div>
+
+                        <div class="card">
+                            <h3>📦 Recent Orders</h3>
+                            ${data.recentOrders.map(order => `
+                                <div class="order-item">
+                                    <div>
+                                        <strong>Order #${order.id}</strong><br>
+                                        <small>${new Date(order.orderDate).toLocaleDateString()}</small>
+                                    </div>
+                                    <div>
+                                        <div class="status ${order.status.toLowerCase()}">${order.status}</div>
+                                        <div style="text-align: right; margin-top: 0.5rem;">$${order.totalPrice}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                            <button class="action-btn" onclick="navigateToOrders()">View All Orders</button>
+                        </div>
+
+                        <div class="card">
+                            <h3>📊 Order Status</h3>
+                            ${data.ordersByStatus.map(status => `
+                                <div class="order-item">
+                                    <span>${status.status}</span>
+                                    <span class="status ${status.status.toLowerCase()}">${status.count}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+        }
+
+        function renderSupplierDashboard(data) {
+            return `
+                    <div class="dashboard-grid">
+                        <div class="card stat-card">
+                            <div class="stat-number">$${data.totalRevenue}</div>
+                            <div class="stat-label">Total Revenue</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>🌸 My Perfumes</h3>
+                            ${data.perfumes.map(perfume => `
+                                <div class="product-item">
+                                    <div>
+                                        <strong>${perfume.name}</strong><br>
+                                        <small>Stock: ${perfume.stock} units</small>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        $${perfume.price}<br>
+                                        <button class="action-btn" onclick="editProduct(${perfume.id})">Edit</button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                            <button class="action-btn" onclick="navigateToCreatePerfume()">Add New Perfume</button>
+                        </div>
+
+                        <div class="card">
+                            <h3>⚗️ Components</h3>
+                            ${data.components.map(component => `
+                                <div class="product-item">
+                                    <span>${component.name}</span>
+                                    <span>${component.quantity} ${component.unit}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="card">
+                            <h3>🔔 Pending Orders</h3>
+                            ${data.pendingOrders.map(order => `
+                                <div class="order-item">
+                                    <div>
+                                        <strong>${order.client}</strong><br>
+                                        <small>${order.items.join(', ')}</small>
+                                    </div>
+                                    <button class="action-btn" onclick="processOrder(${order.id})">Process</button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+        }
+
+        function renderAdminDashboard(data) {
+            return `
+                    <div class="dashboard-grid">
+                        <div class="card stat-card">
+                            <div class="stat-number">${data.totalOrders}</div>
+                            <div class="stat-label">Total Orders</div>
+                        </div>
+
+                        <div class="card stat-card">
+                            <div class="stat-number">$${data.totalRevenue.toLocaleString()}</div>
+                            <div class="stat-label">Total Revenue</div>
+                        </div>
+
+                        <div class="card">
+                            <h3>👥 Users by Role</h3>
+                            ${data.usersByRole.map(user => `
+                                <div class="order-item">
+                                    <span>${user.role}s</span>
+                                    <span class="status pending">${user.count}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="card">
+                            <h3>📊 Order Statistics</h3>
+                            ${data.ordersByStatus.map(status => `
+                                <div class="order-item">
+                                    <span>${status.status}</span>
+                                    <span class="status ${status.status.toLowerCase()}">${status.count}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>📈 Monthly Revenue Trend</h3>
+                        <div class="chart" id="revenueChart">
+                            ${data.monthlyRevenue.map((revenue, index) => `
+                                <div class="chart-bar" style="height: ${(revenue / Math.max(...data.monthlyRevenue)) * 250}px">
+                                    $${(revenue / 1000).toFixed(1)}k
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+        }
+
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalValue = stat.textContent;
+                stat.textContent = '0';
+
+                if (finalValue.includes('$')) {
+                    const numValue = parseFloat(finalValue.replace(/[$,]/g, ''));
+                    animateNumber(stat, 0, numValue, 1500, value => '$' + value.toLocaleString());
+                } else {
+                    const numValue = parseInt(finalValue);
+                    animateNumber(stat, 0, numValue, 1500);
+                }
+            });
+        }
+
+        function animateNumber(element, start, end, duration, formatter = null) {
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const currentValue = Math.floor(start + (end - start) * progress);
+
+                element.textContent = formatter ? formatter(currentValue) : currentValue;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        function animateCharts() {
+            const chartBars = document.querySelectorAll('.chart-bar');
+            chartBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.opacity = '0';
+                    bar.style.transform = 'scaleY(0)';
+                    setTimeout(() => {
+                        bar.style.transition = 'all 0.8s ease';
+                        bar.style.opacity = '1';
+                        bar.style.transform = 'scaleY(1)';
+                    }, 50);
+                }, index * 100);
+            });
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            document.getElementById('loadingSpinner').style.display = 'none';
+        }
+
+        // Action functions (implement based on your needs)
+        function viewAllOrders() { navigateToOrders(); }
+        function editProduct(id) { alert(`Editing product ${id}...`); }
+        function addNewProduct() { navigateToCreatePerfume(); }
+        function processOrder(id) { alert(`Processing order ${id}...`); }
+    </script>
+</body>
+</html>

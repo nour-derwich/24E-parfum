@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Perfume - E-Parfum</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #764ba2;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .role-badge {
+            background-color: #667eea;
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .logout-btn:hover {
+                background-color: white;
+                color: #764ba2;
+            }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            color: #764ba2;
+        }
+
+        .back-btn {
+            background-color: #f0f0f0;
+            color: #333;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+            .back-btn:hover {
+                background-color: #e0e0e0;
+            }
+
+        .perfume-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+            .form-control:focus {
+                outline: none;
+                border-color: #764ba2;
+            }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+            .submit-btn:hover {
+                transform: translateY(-2px);
+            }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🌸 E-Parfum</h1>
+        <div class="user-info">
+            <span id="username">Loading...</span>
+            <span class="role-badge" id="userRole">-</span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <button class="back-btn" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+
+        <div class="page-header">
+            <h1 class="page-title" id="formTitle">Create New Perfume</h1>
+        </div>
+
+        <div class="perfume-form">
+            <div class="form-group">
+                <label for="name" class="form-label">Perfume Name</label>
+                <input type="text" id="name" class="form-control" required>
+                <div class="error-message" id="nameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="price" class="form-label">Price ($)</label>
+                <input type="number" id="price" class="form-control" min="0" step="0.01" required>
+                <div class="error-message" id="priceError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity" class="form-label">Available Quantity</label>
+                <input type="number" id="quantity" class="form-control" min="0" required>
+                <div class="error-message" id="quantityError"></div>
+            </div>
+
+            <div class="form-group" id="supplierGroup" style="display: none;">
+                <label for="supplier" class="form-label">Supplier</label>
+                <select id="supplier" class="form-control">
+                    <!-- Suppliers will be loaded here for admin -->
+                </select>
+            </div>
+
+            <button type="button" class="submit-btn" id="submitBtn">Create Perfume</button>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        const authToken = localStorage.getItem('authToken');
+        if (!authToken) {
+            window.location.href = 'login.html';
+        }
+
+        // Load user info
+        document.getElementById('username').textContent = localStorage.getItem('username') || 'User';
+        const userRole = localStorage.getItem('userRole') || 'Client';
+        document.getElementById('userRole').textContent = userRole;
+
+        // Check if this is an edit page
+        const urlParams = new URLSearchParams(window.location.search);
+        const perfumeId = urlParams.get('id');
+        const isEdit = !!perfumeId;
+
+        if (isEdit) {
+            document.getElementById('formTitle').textContent = 'Edit Perfume';
+            document.getElementById('submitBtn').textContent = 'Update Perfume';
+            loadPerfumeData(perfumeId);
+        }
+
+        // Show supplier field for admin
+        if (userRole === 'Admin') {
+            document.getElementById('supplierGroup').style.display = 'block';
+            loadSuppliers();
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+
+        // Load perfume data for editing
+        async function loadPerfumeData(id) {
+            try {
+                const response = await fetch(`/api/Perfumes/${id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    const perfume = await response.json();
+
+                    document.getElementById('name').value = perfume.name;
+                    document.getElementById('description').value = perfume.description || '';
+                    document.getElementById('price').value = perfume.price;
+                    document.getElementById('quantity').value = perfume.availableQuantity;
+
+                    if (userRole === 'Admin' && perfume.supplierId) {
+                        document.getElementById('supplier').value = perfume.supplierId;
+                    }
+                } else {
+                    alert('Failed to load perfume data');
+                    window.location.href = 'catalog.html';
+                }
+            } catch (error) {
+                console.error('Error loading perfume:', error);
+                alert('Error loading perfume data');
+            }
+        }
+
+        // Load suppliers for admin
+        async function loadSuppliers() {
+            try {
+                const response = await fetch('/api/users/suppliers', {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    const suppliers = await response.json();
+                    const supplierSelect = document.getElementById('supplier');
+
+                    suppliers.forEach(supplier => {
+                        const option = document.createElement('option');
+                        option.value = supplier.id;
+                        option.textContent = supplier.fullName;
+                        supplierSelect.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading suppliers:', error);
+            }
+        }
+
+        // Form submission
+        document.getElementById('submitBtn').addEventListener('click', async () => {
+            const name = document.getElementById('name').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const price = parseFloat(document.getElementById('price').value);
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const supplierId = userRole === 'Admin' ? document.getElementById('supplier').value : null;
+
+            // Validate inputs
+            let isValid = true;
+
+            if (!name) {
+                document.getElementById('nameError').textContent = 'Name is required';
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('nameError').style.display = 'none';
+            }
+
+            if (isNaN(price) || price <= 0) {
+                document.getElementById('priceError').textContent = 'Valid price is required';
+                document.getElementById('priceError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('priceError').style.display = 'none';
+            }
+
+            if (isNaN(quantity) || quantity < 0) {
+                document.getElementById('quantityError').textContent = 'Valid quantity is required';
+                document.getElementById('quantityError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('quantityError').style.display = 'none';
+            }
+
+            if (!isValid) return;
+
+            // Prepare data
+            const perfumeData = {
+                name: name,
+                description: description,
+                price: price,
+                availableQuantity: quantity
+            };
+
+            if (userRole === 'Admin' && supplierId) {
+                perfumeData.supplierId = supplierId;
+            }
+
+            // Submit data
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> Processing...';
+
+            try {
+                let response;
+
+                if (isEdit) {
+                    response = await fetch(`/api/Perfumes/${perfumeId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${authToken}`
+                        },
+                        body: JSON.stringify(perfumeData)
+                    });
+                } else {
+                    response = await fetch('/api/Perfumes', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${authToken}`
+                        },
+                        body: JSON.stringify(perfumeData)
+                    });
+                }
+
+                if (response.ok) {
+                    alert(`Perfume ${isEdit ? 'updated' : 'created'} successfully!`);
+                    window.location.href = 'catalog.html';
+                } else {
+                    const errorData = await response.json();
+                    alert(errorData.message || 'Operation failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = isEdit ? 'Update Perfume' : 'Create Perfume';
+            }
+        });
+    </script>
+</body>
+</html>

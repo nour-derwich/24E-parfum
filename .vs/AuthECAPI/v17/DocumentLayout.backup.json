@@ -1,0 +1,480 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\extensions\\swaggerextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\extensions\\swaggerextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\models\\appsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\models\\appsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\authecapi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\authecapi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\controllers\\componentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\controllers\\componentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\components\\components.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\components\\components.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\admin\\reports.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\admin\\reports.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\perfumes\\catalog.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\perfumes\\catalog.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\controllers\\orderendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\controllers\\orderendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\controllers\\identityuserendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\controllers\\identityuserendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\controllers\\perfumescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\controllers\\perfumescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\dashboard.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\dashboard.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\login.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\login.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\register.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\register.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\orders\\order-details.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\orders\\order-details.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\orders\\orders.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\orders\\orders.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\orders\\create-custom-order.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\orders\\create-custom-order.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\perfumes\\create-perfume.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\perfumes\\create-perfume.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\profile\\profile.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\profile\\profile.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\wwwroot\\auth\\perfumes\\edit-perfume.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\wwwroot\\auth\\perfumes\\edit-perfume.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|c:\\users\\nourd\\desktop\\tek-up\\prafum_project\\e-parfum.net\\authecapi\\authecapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{910BF66E-D17F-4DED-84FD-DFCC36858ED8}|AuthECAPI\\AuthECAPI.csproj|solutionrelative:authecapi\\authecapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Models\\AppUser.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Models\\AppUser.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Models\\AppUser.cs",
+              "RelativeToolTip": "AuthECAPI\\Models\\AppUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-21T08:17:22.398Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "AuthECAPI\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Properties\\launchSettings.json",
+              "RelativeToolTip": "AuthECAPI\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-31T13:53:22.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppSettings.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Models\\AppSettings.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Models\\AppSettings.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Models\\AppSettings.cs",
+              "RelativeToolTip": "AuthECAPI\\Models\\AppSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-21T08:17:16.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SwaggerExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Extensions\\SwaggerExtensions.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Extensions\\SwaggerExtensions.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Extensions\\SwaggerExtensions.cs",
+              "RelativeToolTip": "AuthECAPI\\Extensions\\SwaggerExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-21T08:17:00.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthECAPI.http",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\AuthECAPI.http",
+              "RelativeDocumentMoniker": "AuthECAPI\\AuthECAPI.http",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\AuthECAPI.http",
+              "RelativeToolTip": "AuthECAPI\\AuthECAPI.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-06-21T08:16:50.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Program.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Program.cs",
+              "RelativeToolTip": "AuthECAPI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T10:15:46.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\WeatherForecast.cs",
+              "RelativeToolTip": "AuthECAPI\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-21T08:16:46.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "catalog.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\perfumes\\catalog.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\perfumes\\catalog.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\perfumes\\catalog.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\perfumes\\catalog.html",
+              "ViewState": "AgIAALsCAAAAAAAAAAAQwM4CAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T15:11:54.51Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "components.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\components\\components.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\components\\components.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\components\\components.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\components\\components.html",
+              "ViewState": "AgIAAOsBAAAAAAAAAAAQwPYBAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T15:26:19.717Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Models\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Models\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Models\\AppDbContext.cs",
+              "RelativeToolTip": "AuthECAPI\\Models\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T10:17:09.097Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "OrderEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\OrderEndpoints.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Controllers\\OrderEndpoints.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\OrderEndpoints.cs",
+              "RelativeToolTip": "AuthECAPI\\Controllers\\OrderEndpoints.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T15:08:15.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "dashboard.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\dashboard.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\dashboard.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\dashboard.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\dashboard.html",
+              "ViewState": "AgIAADsBAAAAAAAAAAAQwE4BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T14:29:36.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ComponentsController.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\ComponentsController.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Controllers\\ComponentsController.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\ComponentsController.cs",
+              "RelativeToolTip": "AuthECAPI\\Controllers\\ComponentsController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T16:19:39.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IdentityUserEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\IdentityUserEndpoints.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Controllers\\IdentityUserEndpoints.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\IdentityUserEndpoints.cs",
+              "RelativeToolTip": "AuthECAPI\\Controllers\\IdentityUserEndpoints.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAowIIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T12:40:36.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "reports.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\admin\\reports.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\admin\\reports.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\admin\\reports.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\admin\\reports.html",
+              "ViewState": "AgIAAHkCAAAAAAAAAAAkwIICAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T17:03:52.006Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "AuthECAPI\\Controllers\\OrdersController.cs",
+              "ViewState": "AgIAAFUBAAAAAAAAAAAmwG4BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T15:08:08.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Controllers\\DashboardController.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "AuthECAPI\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAuwIkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T11:50:42.641Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PerfumesController.cs",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\PerfumesController.cs",
+              "RelativeDocumentMoniker": "AuthECAPI\\Controllers\\PerfumesController.cs",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\Controllers\\PerfumesController.cs",
+              "RelativeToolTip": "AuthECAPI\\Controllers\\PerfumesController.cs",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAYwNEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T12:57:00.917Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "create-custom-order.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\orders\\create-custom-order.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\orders\\create-custom-order.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\orders\\create-custom-order.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\orders\\create-custom-order.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T15:25:30.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "profile.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\profile\\profile.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\profile\\profile.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\profile\\profile.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\profile\\profile.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T15:25:11.376Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "create-perfume.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\perfumes\\create-perfume.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\perfumes\\create-perfume.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\perfumes\\create-perfume.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\perfumes\\create-perfume.html",
+              "ViewState": "AgIAAHsBAAAAAAAAAAAgwJMBAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T15:12:39.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "orders.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\orders\\orders.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\orders\\orders.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\orders\\orders.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\orders\\orders.html",
+              "ViewState": "AgIAAIMDAAAAAAAAAAAgwJIDAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T15:14:23.463Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "register.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\register.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\register.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\register.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\register.html",
+              "ViewState": "AgIAAB4BAAAAAAAAAAAAADYBAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T13:34:48.044Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "login.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\login.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\login.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\login.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\login.html",
+              "ViewState": "AgIAAKAAAAAAAAAAAAAQwLAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T13:34:31.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "order-details.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\orders\\order-details.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\orders\\order-details.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\orders\\order-details.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\orders\\order-details.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T16:01:01.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "edit-perfume.html",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\perfumes\\edit-perfume.html",
+              "RelativeDocumentMoniker": "AuthECAPI\\wwwroot\\auth\\perfumes\\edit-perfume.html",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\perfumes\\edit-perfume.html",
+              "RelativeToolTip": "AuthECAPI\\wwwroot\\auth\\perfumes\\edit-perfume.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-05-31T15:24:21.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "AuthECAPI.csproj",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\AuthECAPI.csproj",
+              "RelativeDocumentMoniker": "AuthECAPI\\AuthECAPI.csproj",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\AuthECAPI.csproj",
+              "RelativeToolTip": "AuthECAPI\\AuthECAPI.csproj",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAawBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-31T12:16:49.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "AuthECAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\appsettings.json",
+              "RelativeToolTip": "AuthECAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-31T13:48:33.273Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

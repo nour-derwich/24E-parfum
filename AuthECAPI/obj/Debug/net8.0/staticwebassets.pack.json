@@ -1,0 +1,69 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\admin\\reports.html",
+      "PackagePath": "staticwebassets\\auth\\admin\\reports.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\components\\components.html",
+      "PackagePath": "staticwebassets\\auth\\components\\components.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\dashboard.html",
+      "PackagePath": "staticwebassets\\auth\\dashboard.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\login.html",
+      "PackagePath": "staticwebassets\\auth\\login.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\orders\\create-custom-order.html",
+      "PackagePath": "staticwebassets\\auth\\orders\\create-custom-order.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\orders\\order-details.html",
+      "PackagePath": "staticwebassets\\auth\\orders\\order-details.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\orders\\orders.html",
+      "PackagePath": "staticwebassets\\auth\\orders\\orders.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\perfumes\\catalog.html",
+      "PackagePath": "staticwebassets\\auth\\perfumes\\catalog.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\perfumes\\create-perfume.html",
+      "PackagePath": "staticwebassets\\auth\\perfumes\\create-perfume.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\perfumes\\edit-perfume.html",
+      "PackagePath": "staticwebassets\\auth\\perfumes\\edit-perfume.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\profile\\profile.html",
+      "PackagePath": "staticwebassets\\auth\\profile\\profile.html"
+    },
+    {
+      "Id": "C:\\Users\\nourd\\Desktop\\tek-up\\prafum_project\\e-parfum.NET\\AuthECAPI\\wwwroot\\auth\\register.html",
+      "PackagePath": "staticwebassets\\auth\\register.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AuthECAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AuthECAPI.props",
+      "PackagePath": "build\\AuthECAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AuthECAPI.props",
+      "PackagePath": "buildMultiTargeting\\AuthECAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AuthECAPI.props",
+      "PackagePath": "buildTransitive\\AuthECAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
